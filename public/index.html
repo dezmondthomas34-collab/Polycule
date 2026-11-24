@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polycule — a polyamory dating app (starter)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">💜 Polycule</div>
+  <div id="sessionBox" class="session-box hidden">
+    <span id="sessionEmail"></span>
+    <button id="logoutBtn" class="btn btn-ghost">Log out</button>
+  </div>
+</header>
+
+<main>
+  <!-- Auth view -->
+  <section id="authView" class="card auth-card">
+    <h1>Meet your people</h1>
+    <p class="muted">A starter polyamory dating app. Demo profiles are fictional and clearly labelled.</p>
+    <div class="tabs">
+      <button id="showLogin" class="tab active">Log in</button>
+      <button id="showSignup" class="tab">Sign up</button>
+    </div>
+    <form id="authForm">
+      <label>Email <input type="email" id="authEmail" required autocomplete="email"></label>
+      <label>Password <input type="password" id="authPassword" required autocomplete="current-password"></label>
+      <p id="authError" class="error hidden"></p>
+      <button type="submit" id="authSubmit" class="btn btn-primary">Log in</button>
+    </form>
+    <p class="muted small">You must be 18+ to use this app. Starter code — not production-hardened (see README).</p>
+  </section>
+
+  <!-- App view -->
+  <section id="appView" class="hidden">
+    <nav class="main-nav">
+      <button data-view="discover" class="nav-btn active">Discover</button>
+      <button data-view="matches" class="nav-btn">Matches <span id="matchCount" class="badge hidden">0</span></button>
+      <button data-view="profile" class="nav-btn">My Profile</button>
+    </nav>
+
+    <!-- Discover -->
+    <div id="discoverView" class="view">
+      <div class="filter-row">
+        <label for="styleFilter">Relationship style</label>
+        <select id="styleFilter"><option value="">All styles</option></select>
+        <button id="refreshDiscover" class="btn btn-ghost">Refresh</button>
+      </div>
+      <p id="discoverEmpty" class="muted hidden">No more profiles here right now. Try another style filter, or check back later.</p>
+      <div id="discoverGrid" class="grid"></div>
+    </div>
+
+    <!-- Matches + messages -->
+    <div id="matchesView" class="view hidden">
+      <div class="matches-layout">
+        <div>
+          <h2>Your matches</h2>
+          <p id="matchesEmpty" class="muted hidden">No matches yet — like someone in Discover. (Hint: Maya and Jordan like everyone back.)</p>
+          <div id="matchList" class="match-list"></div>
+        </div>
+        <div class="chat-box">
+          <h2 id="chatTitle">Messages</h2>
+          <div id="chatLog" class="chat-log"><p class="muted">Pick a match to start chatting.</p></div>
+          <form id="chatForm" class="chat-form hidden">
+            <input id="chatInput" type="text" placeholder="Write a message…" maxlength="2000" autocomplete="off">
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div id="profileView" class="view hidden">
+      <h2>Your profile</h2>
+      <form id="profileForm" class="profile-form">
+        <label>Display name <input id="pDisplayName" type="text" maxlength="60" placeholder="e.g. Alex"></label>
+        <label>Age (18+) <input id="pAge" type="number" min="18" max="120"></label>
+        <label>Pronouns <input id="pPronouns" type="text" maxlength="40" placeholder="e.g. she/her"></label>
+        <label>Location <input id="pLocation" type="text" maxlength="80" placeholder="City, ST"></label>
+        <label>Relationship style
+          <select id="pStyle"></select>
+        </label>
+        <label>Looking for <input id="pLookingFor" type="text" maxlength="300"></label>
+        <label>Bio <textarea id="pBio" rows="4" maxlength="1000"></textarea></label>
+        <label>Boundaries &amp; agreements <textarea id="pBoundaries" rows="3" maxlength="600"></textarea></label>
+        <label>Interests (comma separated) <input id="pInterests" type="text" placeholder="hiking, karaoke, board games"></label>
+        <p id="profileError" class="error hidden"></p>
+        <p id="profileSaved" class="ok hidden">Saved ✓</p>
+        <button class="btn btn-primary" type="submit">Save profile</button>
+      </form>
+      <div class="preview-wrap">
+        <h3>How others see you</h3>
+        <div id="profilePreview"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>
